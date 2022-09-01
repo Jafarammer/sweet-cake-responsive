@@ -1,0 +1,13 @@
+.content {
+  overflow: hidden;
+  min-height: 100vh;
+}
+.d_header {
+  height: 300px;
+}
+.d_card {
+  height: 450px;
+  margin-top: -50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}

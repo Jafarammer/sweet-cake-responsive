@@ -1,0 +1,18 @@
+.content {
+  overflow: hidden;
+  min-height: 100vh;
+}
+.content input {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  border: none;
+}
+.content span {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: none;
+  background-color: #f5f5f5;
+}
+.d_img {
+  height: 200px;
+}

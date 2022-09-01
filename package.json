@@ -13,12 +13,17 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
-    "next": "12.2.3",
+    "bootstrap-icons": "^1.9.1",
+    "next": "^12.2.4-canary.9",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-tabs": "^5.1.0",
+    "swiper": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.1",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3"
   }
