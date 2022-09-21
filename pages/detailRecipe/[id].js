@@ -12,9 +12,9 @@ import CardComment from "../../components/CardComment";
 import styles from "../../styles/details/detailRecipe.module.css";
 
 export async function getStaticPaths() {
-  const request = await fetch(`${process.env.API_URL}/recipe`).then((res) =>
-    res.json()
-  );
+  const request = await fetch(
+    `https://sweet-cake-chef.herokuapp.com/recipe`
+  ).then((res) => res.json());
 
   return {
     paths: request.data.map((item) => ({
@@ -26,9 +26,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { id } = context.params;
-  const request = await fetch(`${process.env.API_URL}/recipe/id/${id}`).then(
-    (res) => res.json()
-  );
+  const request = await fetch(
+    `https://sweet-cake-chef.herokuapp.com/recipe/id/${id}`
+  ).then((res) => res.json());
 
   return {
     props: {
