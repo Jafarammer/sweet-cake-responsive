@@ -9,7 +9,7 @@ import Navbar from "../layouts/Navbar";
 // css
 import styles from "../styles/Home.module.css";
 
-export default function searchPage() {
+export default function SearchPage() {
   const [data, setData] = React.useState([]);
   const router = useRouter();
   const query = router.query.title;

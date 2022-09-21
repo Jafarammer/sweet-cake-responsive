@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 // css
 import styles from "../../styles/auth/register.module.css";
 
-function register() {
+function Register() {
   const { token } = useSelector((state) => state?.auth);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -182,4 +182,4 @@ function register() {
   );
 }
 
-export default register;
+export default Register;

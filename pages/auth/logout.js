@@ -6,7 +6,7 @@ import { authLogin } from "../../redux/reducer/authReducer";
 // css
 import styles from "../../styles/auth/logout.module.css";
 
-function logout(props) {
+function Logout(props) {
   React.useEffect(() => {
     setTimeout(() => {
       props.setLogout();
@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
   authRequestLogin: (data) => dispatch(authLogin(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(logout);
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);

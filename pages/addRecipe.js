@@ -9,7 +9,7 @@ import Navbar from "../layouts/Navbar";
 // css
 import styles from "../styles/addRecipe.module.css";
 
-export default function addRecipe() {
+export default function AddRecipe() {
   const { profile } = useSelector((state) => state?.auth);
   const [title, setTitle] = React.useState("");
   const [ingredients, setIngredients] = React.useState("");

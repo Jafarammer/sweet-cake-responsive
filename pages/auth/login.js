@@ -8,7 +8,7 @@ import { authLogin } from "../../redux/reducer/authReducer";
 // css
 import styles from "../../styles/auth/login.module.css";
 
-function login(props) {
+function Login(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -121,4 +121,4 @@ const mapDispatchToProps = (dispatch) => ({
   authRequestLogin: (data) => dispatch(authLogin(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

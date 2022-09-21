@@ -13,7 +13,7 @@ import Navbar from "../../layouts/Navbar";
 // css
 import styles from "../../styles/profile.module.css";
 
-function profile() {
+function Profile() {
   const { profile } = useSelector((state) => state?.auth);
   const [dataProfile, setDataProfile] = React.useState("");
   React.useEffect(() => {
@@ -167,4 +167,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;
