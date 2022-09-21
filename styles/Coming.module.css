@@ -1,0 +1,9 @@
+.content {
+  overflow: hidden;
+  min-height: 110vh;
+  margin-bottom: 20px;
+  padding-bottom: 15vh;
+  width: 400px;
+  background-color: white;
+  margin: 0;
+}

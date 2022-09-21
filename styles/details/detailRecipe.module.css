@@ -1,12 +1,18 @@
 .content {
   overflow: hidden;
   min-height: 100vh;
+  margin-bottom: 20px;
+  padding-bottom: 15vh;
+  width: 400px;
+  background-color: white;
+  margin: 0;
 }
 .d_header {
   height: 300px;
 }
 .d_header img {
   object-fit: cover;
+  opacity: 0.5;
 }
 .d_card {
   /* height: 450px; */
@@ -46,19 +52,22 @@
   font-size: 24px;
   font-weight: bold;
 }
+
 .d_title {
   position: absolute;
-  margin-top: 7.5em;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 13.5em;
   z-index: 1;
+}
+@media (min-width: 768px) {
+  .d_title {
+    margin-top: 10.5em;
+  }
 }
 .d_subTitle {
   position: absolute;
   margin-top: 15.5em;
-  background-color: #b0b0b0;
+  border: 1px solid grey;
   border-radius: 10px;
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
   z-index: 1;
 }
 .btn_save_like {
@@ -69,4 +78,12 @@
 }
 .btn_save_like button {
   border-radius: 15px;
+}
+.d_ingredients {
+  min-height: 50vh;
+}
+.img_comment {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
 }

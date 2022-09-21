@@ -1,0 +1,8 @@
+.d_loading {
+  width: 100vw;
+  height: 100vh;
+}
+.d_loading div {
+  width: 15rem;
+  height: 15rem;
+}

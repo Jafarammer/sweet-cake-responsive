@@ -1,20 +1,18 @@
-import React, { useState } from "react";
 import Router from "next/router";
-import axios from "axios";
+import { useState } from "react";
+import Image from "next/image";
 import Swal from "sweetalert2";
+import axios from "axios";
 // redux
 import { useSelector } from "react-redux";
-// Layouts
-import Navbar from "../layouts/Navbar";
 // css
-import styles from "../styles/addRecipe.module.css";
+import styles from "../../styles/profile.module.css";
 
-export default function addRecipe() {
+function EditProfile() {
   const { profile } = useSelector((state) => state?.auth);
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const loadImage = (e) => {
@@ -23,20 +21,18 @@ export default function addRecipe() {
     setPreview(URL.createObjectURL(image));
   };
 
-  const saveRecipe = async () => {
+  const userUpdate = async () => {
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("title_recipe", title);
-    formData.append("ingredients", ingredients);
     formData.append("photo", file);
-    formData.append("user_id", profile?.id);
+    formData.append("name", name);
     await axios
-      .post(
-        "https://sweet-cake-chef.herokuapp.com/recipe/add",
+      .patch(
+        `https://sweet-cake-chef.herokuapp.com/users/edit/${profile?.id}`,
         formData,
         {
           headers: {
-            "Content-type": "multipart/form-data",
+            "content-type": "multipart/form-data",
           },
         },
         []
@@ -44,13 +40,14 @@ export default function addRecipe() {
       .then((res) => {
         Swal.fire({
           icon: "success",
-          text: "Add Recipe successfully",
+          text: "Update photo profile successfully",
         });
         setTimeout(() => {
-          Router.replace("/");
-        }, 2000);
+          Router.reload(window.location.pathname);
+        }, 1000);
       })
       .catch((error) => {
+        console.log(error);
         Swal.fire({
           icon: "error",
           text: `${error?.response.data}`,
@@ -62,36 +59,36 @@ export default function addRecipe() {
   };
 
   return (
-    <div className={styles.content}>
-      <Navbar />
-      {/* content */}
-      <main className="container">
-        <form className="mx-3 mt-5" onSubmit={(e) => e.preventDefault()}>
+    <div>
+      <main>
+        <form
+          className={`mt-2 px-4 ${styles.d_form}`}
+          onSubmit={(e) => e.preventDefault()}
+        >
           <input
-            className="form-control form-control-lg mb-4"
+            type="text"
+            className="form-control mb-4"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            className="form-control mb-4"
             type="file"
             onChange={loadImage}
-          />
-          <input
-            className="form-control mb-4 py-3"
-            type="text"
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            className="form-control mt-5"
-            placeholder="Ingredients"
-            rows="5"
-            onChange={(e) => setIngredients(e.target.value)}
           />
           <div className="py-5 px-3">
             <h2 className="text-center text-muted">Show Image</h2>
             <hr className="mb-5" />
             {preview ? (
-              <div
-                className={`border border-4 border-warning card ${styles.d_card_show}`}
-              >
-                <img src={preview} alt="Preview Image" />
+              <div className="d-flex justify-content-center">
+                <Image
+                  src={preview}
+                  alt="default image"
+                  width="200px"
+                  height="200px"
+                  objectFit="cover"
+                  className="rounded-circle"
+                />
               </div>
             ) : (
               ""
@@ -99,15 +96,15 @@ export default function addRecipe() {
           </div>
           <div className="d-grid gap-1 mt-4">
             <button
-              className="btn btn-warning text-white py-3 fw-bold"
+              className="btn btn-light text-warning py-2 fw-bold"
+              onClick={userUpdate}
               type="submit"
-              onClick={saveRecipe}
               disabled={isLoading}
             >
               {isLoading && (
                 <span className="spinner-border spinner-border-sm me-2" />
               )}
-              {isLoading ? "Loading..." : "Post"}
+              {isLoading ? "Loading..." : "Update photo profile"}
             </button>
           </div>
         </form>
@@ -115,3 +112,5 @@ export default function addRecipe() {
     </div>
   );
 }
+
+export default EditProfile;

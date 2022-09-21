@@ -1,50 +1,52 @@
 import Link from "next/link";
-// icon
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faSquarePlus,
-  faComment,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-// css
 import styles from "../styles/Home.module.css";
+// redux
+import { useSelector } from "react-redux";
 
-export default function MainLayout(props) {
+export default function Navbar() {
+  const { token } = useSelector((state) => state?.auth);
   return (
     <div>
-      <div>{props.children}</div>
-      {/* <nav className="navbar navbar-dark bg-warning navbar-expand d-md-none d-lg-none d-xl-none fixed-bottom"> */}
       <nav
-        className={`navbar navbar-dark bg-warning navbar-expand fixed-bottom`}
+        className={`navbar navbar-dark bg-warning navbar-expand fixed-bottom d-flex justify-content-center ${styles.d_nav}`}
       >
         <ul className="navbar-nav nav-justified w-100 p-0 m-0">
           {/* Home */}
           <li className="nav-item">
             <Link href="/" passHref>
               <a className="nav-link">
-                <h1>
+                <h3>
                   <i className="bi bi-house-fill"></i>
-                </h1>
+                </h3>
               </a>
             </Link>
           </li>
           {/* add recipe */}
           <li className="nav-item">
-            <Link href="/addRecipe" passHref>
-              <a className="nav-link">
-                <h1>
-                  <i className="bi bi-plus-square-fill"></i>
-                </h1>
-              </a>
-            </Link>
+            {token ? (
+              <Link href="/addRecipe" passHref>
+                <a className="nav-link">
+                  <h3>
+                    <i className="bi bi-plus-square-fill"></i>
+                  </h3>
+                </a>
+              </Link>
+            ) : (
+              <Link href="/auth/login" passHref>
+                <a className="nav-link">
+                  <h3>
+                    <i className="bi bi-plus-square-fill"></i>
+                  </h3>
+                </a>
+              </Link>
+            )}
           </li>
           {/* chat */}
           <li className="nav-item">
             <a href="#" className="nav-link">
-              <h1>
+              <h3>
                 <i className="bi bi-chat-fill"></i>
-              </h1>
+              </h3>
             </a>
           </li>
           {/* profile login register */}
@@ -56,11 +58,13 @@ export default function MainLayout(props) {
               role="button"
               aria-expanded="false"
             >
-              <span className="fs-1">
+              <span className="fs-3">
                 <i className="bi bi-person-fill"></i>
               </span>
             </a>
-            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mb-3 me-2">
+            <ul
+              className={`dropdown-menu dropdown-menu-end dropdown-menu-lg-start mb-3 me-2 ${styles.d_dropdown}`}
+            >
               <li>
                 <Link href="/auth/login" passHref>
                   <a className="dropdown-item">Login</a>
@@ -72,8 +76,19 @@ export default function MainLayout(props) {
                 </Link>
               </li>
               <li>
-                <Link href="/profile" passHref>
-                  <a className="dropdown-item">Profile</a>
+                {token ? (
+                  <Link href="/profile" passHref>
+                    <a className="dropdown-item">Profile</a>
+                  </Link>
+                ) : (
+                  <Link href="/auth/login" passHref>
+                    <a className="dropdown-item">Profile</a>
+                  </Link>
+                )}
+              </li>
+              <li>
+                <Link href="/auth/logout" passHref>
+                  <a className="dropdown-item">Logout</a>
                 </Link>
               </li>
             </ul>

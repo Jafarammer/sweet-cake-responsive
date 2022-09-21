@@ -1,9 +1,58 @@
-import React from "react";
+import axios from "axios";
 import Link from "next/link";
+import Router from "next/router";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+// redux
+import { useSelector } from "react-redux";
 // css
 import styles from "../../styles/auth/register.module.css";
 
 function register() {
+  const { token } = useSelector((state) => state?.auth);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      Router.push("/");
+    }
+  });
+
+  const handleRegister = () => {
+    setIsLoading(true);
+    axios
+      .post("https://sweet-cake-chef.herokuapp.com/register", {
+        name,
+        email,
+        phone_number,
+        password,
+        confirmPassword,
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          text: "Register successfully ",
+        });
+        setTimeout(() => {
+          Router.replace("/auth/login");
+        }, 1200);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          text: `${error?.response.data}`,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <div className={styles.content}>
       <div className="mt-3 ms-3">
@@ -20,7 +69,7 @@ function register() {
 
       {/* Content */}
       <main className="container">
-        <form className="mx-3 mt-5">
+        <form className="mx-3 mt-5" onSubmit={(e) => e.preventDefault()}>
           {/* input name */}
           <div className="input-group mb-4">
             <span className="input-group-text" id="basic-addon1">
@@ -34,6 +83,7 @@ function register() {
               placeholder="Name"
               aria-label="Name"
               aria-describedby="basic-addon1"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -50,6 +100,7 @@ function register() {
               placeholder="Email"
               aria-label="Email"
               aria-describedby="basic-addon2"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -66,6 +117,7 @@ function register() {
               placeholder="Phone Number"
               aria-label="Phone Number"
               aria-describedby="basic-addon3"
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
 
@@ -82,6 +134,7 @@ function register() {
               placeholder="Create New Password"
               aria-label="New Password"
               aria-describedby="basic-addon4"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -98,16 +151,19 @@ function register() {
               placeholder="Confirm Password"
               aria-label="Confirm Password"
               aria-describedby="basic-addon5"
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
           {/* button input */}
-          <div className="d-grid gap-1 mt-5">
+          <div className="d-grid gap-1 mt-4">
             <button
-              className="btn btn-warning text-white py-3 fw-bold"
-              type="button"
+              className="btn btn-light text-warning py-2 fw-bold"
+              onClick={handleRegister}
+              type="submit"
+              disabled={isLoading}
             >
-              Register
+              {isLoading ? "Loading..." : "Register"}
             </button>
           </div>
 

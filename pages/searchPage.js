@@ -1,32 +1,39 @@
 import { useRouter } from "next/router";
+import Router from "next/router";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+// layout
+import Navbar from "../layouts/Navbar";
 // css
 import styles from "../styles/Home.module.css";
 
 export default function searchPage() {
   const [data, setData] = useState([]);
   const router = useRouter();
-  const query = router.query;
-  const title = query.title;
+  const query = router.query.title;
 
   useEffect(() => {
-    axios.get("/api/recipe").then((res) => setData(res.data));
-  }, []);
+    axios
+      .get(
+        `https://sweet-cake-chef.herokuapp.com/recipe/name?title_recipe=${query}`
+      )
+      .then((res) => setData(res.data.data));
+  }, [query]);
 
   let dataSearch = data.filter((item) => {
     return Object.keys(item).some((key) =>
       item[key]
         .toString()
         .toLowerCase()
-        .includes(title.toString().toLowerCase())
+        .includes(query.toString().toLowerCase())
     );
   });
 
   return (
     <div className={styles.content}>
+      <Navbar />
       {/* content */}
       <main className="container">
         <section className="py-3">
@@ -46,17 +53,27 @@ export default function searchPage() {
                       alt="logo"
                       width="100%"
                       height="100%"
+                      objectFit="cover"
                     />
                   </div>
                   <div className="col-8">
                     <div className="card-body">
                       <h5 className="card-title text-secondary">
-                        {item?.title_recipe}
+                        {item?.title_recipe?.length > 15
+                          ? item?.title_recipe?.substring(0, 15) + "..."
+                          : item?.title_recipe}
                       </h5>
-                      <small className="text-muted">Sweet, Gentle</small>
-                      <p className="card-text text-warning mt-1">
-                        <i className="bi bi-star-fill"></i>
-                        <small className="text-muted ms-2">4.7</small>
+                      <small className="text-muted">
+                        {item?.ingredients?.length > 15
+                          ? item?.ingredients?.substring(0, 15) + "..."
+                          : item?.ingredients}
+                      </small>
+                      <p
+                        className={`card-text mt-3 ${styles.view_detail} `}
+                        onClick={() => Router.push("/detailRecipe/" + item?.id)}
+                      >
+                        <i class="bi bi-eye-fill me-1 mt-1"></i>
+                        View detail
                       </p>
                     </div>
                   </div>
