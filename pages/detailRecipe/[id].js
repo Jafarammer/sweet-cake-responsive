@@ -1,7 +1,7 @@
+import React from "react";
 import Image from "next/image";
 import Router from "next/router";
 import axios from "axios";
-import { useState } from "react";
 // redux
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -40,9 +40,9 @@ export async function getStaticProps(context) {
 const DetailRecipe = (props) => {
   const { profile } = useSelector((state) => state?.auth);
   const { token } = useSelector((state) => state?.auth);
-  const [comment_message, setCommentMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [toggleState, setToggleState] = useState(1);
+  const [comment_message, setCommentMessage] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [toggleState, setToggleState] = React.useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
   };

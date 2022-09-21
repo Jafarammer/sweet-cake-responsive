@@ -1,6 +1,6 @@
+import React from "react";
 import { useRouter } from "next/router";
 import Router from "next/router";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -10,11 +10,11 @@ import Navbar from "../layouts/Navbar";
 import styles from "../styles/Home.module.css";
 
 export default function searchPage() {
-  const [data, setData] = useState([]);
+  const [data, setData] = React.useState([]);
   const router = useRouter();
   const query = router.query.title;
 
-  useEffect(() => {
+  React.useEffect(() => {
     axios
       .get(
         `https://sweet-cake-chef.herokuapp.com/recipe/name?title_recipe=${query}`

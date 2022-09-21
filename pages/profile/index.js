@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import axios from "axios";
 // redux
@@ -15,8 +15,8 @@ import styles from "../../styles/profile.module.css";
 
 function profile() {
   const { profile } = useSelector((state) => state?.auth);
-  const [dataProfile, setDataProfile] = useState("");
-  useEffect(() => {
+  const [dataProfile, setDataProfile] = React.useState("");
+  React.useEffect(() => {
     axios
       .get(`https://sweet-cake-chef.herokuapp.com/users/id/${profile?.id}`)
       .then((res) => setDataProfile(res.data.data));

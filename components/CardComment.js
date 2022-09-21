@@ -1,5 +1,5 @@
+import React from "react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import axios from "axios";
 // css
 import styles from "../styles/details/detailRecipe.module.css";
@@ -7,8 +7,8 @@ import styles from "../styles/details/detailRecipe.module.css";
 function CardComment() {
   const router = useRouter();
   const { id } = router.query;
-  const [dataComment, setDataComment] = useState([]);
-  useEffect(() => {
+  const [dataComment, setDataComment] = React.useState([]);
+  React.useEffect(() => {
     axios
       .get(`https://sweet-cake-chef.herokuapp.com/comment/comment/${id}`)
       .then((res) => setDataComment(res.data.data));

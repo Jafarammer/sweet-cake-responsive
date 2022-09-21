@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Router from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -11,11 +11,11 @@ import styles from "../styles/addRecipe.module.css";
 
 export default function addRecipe() {
   const { profile } = useSelector((state) => state?.auth);
-  const [title, setTitle] = useState("");
-  const [ingredients, setIngredients] = useState("");
-  const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = React.useState("");
+  const [ingredients, setIngredients] = React.useState("");
+  const [file, setFile] = React.useState(null);
+  const [preview, setPreview] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const loadImage = (e) => {
     const image = e.target.files[0];

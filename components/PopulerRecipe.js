@@ -1,12 +1,12 @@
+import React from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import axios from "axios";
 // css
 import styles from "../styles/Home.module.css";
 
 export default function PopulerRecipe() {
-  const [dataPopuler, setDataPopuler] = useState([]);
-  useEffect(() => {
+  const [dataPopuler, setDataPopuler] = React.useState([]);
+  React.useEffect(() => {
     axios
       .get("/api/recipe/getRecipe")
       .then((res) => setDataPopuler(res.data.data));

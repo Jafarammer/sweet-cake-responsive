@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
@@ -9,10 +9,10 @@ import { authLogin } from "../../redux/reducer/authReducer";
 import styles from "../../styles/auth/login.module.css";
 
 function login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (props.auth.token) {
       Router.replace("/");
     }

@@ -1,7 +1,7 @@
+import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import Router from "next/router";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 // redux
 import { useSelector } from "react-redux";
@@ -10,14 +10,14 @@ import styles from "../../styles/auth/register.module.css";
 
 function register() {
   const { token } = useSelector((state) => state?.auth);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone_number, setPhoneNumber] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (token) {
       Router.push("/");
     }

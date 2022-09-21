@@ -1,5 +1,5 @@
+import React from "react";
 import Router from "next/router";
-import { useEffect } from "react";
 // redux
 import { connect } from "react-redux";
 import { authLogin } from "../../redux/reducer/authReducer";
@@ -7,7 +7,7 @@ import { authLogin } from "../../redux/reducer/authReducer";
 import styles from "../../styles/auth/logout.module.css";
 
 function logout(props) {
-  useEffect(() => {
+  React.useEffect(() => {
     setTimeout(() => {
       props.setLogout();
       Router.replace("/auth/login");

@@ -1,5 +1,5 @@
+import React from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -15,9 +15,9 @@ import styles from "../../styles/profile.module.css";
 
 function MyRecipe() {
   const { profile } = useSelector((state) => state?.auth);
-  const [dataRecipe, setDataRecipe] = useState([]);
+  const [dataRecipe, setDataRecipe] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     axios
       .get(
         `https://sweet-cake-chef.herokuapp.com/recipe/recipebyuser/${profile?.id}`

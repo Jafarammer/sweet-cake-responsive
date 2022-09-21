@@ -1,5 +1,5 @@
+import React from "react";
 import Router from "next/router";
-import { useState } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -10,10 +10,10 @@ import styles from "../../styles/profile.module.css";
 
 function EditProfile() {
   const { profile } = useSelector((state) => state?.auth);
-  const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState("");
-  const [name, setName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [file, setFile] = React.useState(null);
+  const [preview, setPreview] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const loadImage = (e) => {
     const image = e.target.files[0];

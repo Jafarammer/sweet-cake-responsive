@@ -1,6 +1,5 @@
+import React from "react";
 import Router from "next/router";
-import axios from "axios";
-import { useState } from "react";
 // css
 import styles from "../styles/Home.module.css";
 // layout
@@ -11,8 +10,8 @@ import NewRecipe from "../components/NewRecipe";
 import PopulerRecipe from "../components/PopulerRecipe";
 
 export default function Home() {
-  const [search, setSearch] = useState({ title: "" });
-  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = React.useState({ title: "" });
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = (event) => {
     setIsLoading(true);

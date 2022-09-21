@@ -1,6 +1,6 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import axios from "axios";
 // swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,8 +11,8 @@ import "swiper/css/free-mode";
 import styles from "../styles/Home.module.css";
 
 export default function NewRecipe() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
+  const [data, setData] = React.useState([]);
+  React.useEffect(() => {
     axios.get("/api/recipe/getRecipe").then((res) => setData(res.data.data));
   });
   return (
