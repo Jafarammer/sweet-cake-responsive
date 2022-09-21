@@ -119,7 +119,7 @@ npm install
     <td>Register</td>
   </tr>
   <tr>
-    <td><image src="https://i.postimg.cc/7Yj5NXt3/landing.png" alt="landing" width=100%></td>
+    <td><image src="https://i.postimg.cc/Vk1gsSkz/home.png" alt="landing" width=100%></td>
     <td><image src="https://i.postimg.cc/SRbHQTMs/profile.png" alt="profile" width=100%/></td>
   </tr>
   <tr>
