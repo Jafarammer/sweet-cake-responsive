@@ -36,7 +36,7 @@ function MyRecipe() {
         // spaceBetween={30}
       >
         {dataRecipe.map((item) => (
-          <SwiperSlide>
+          <SwiperSlide key={item?.id}>
             <div className={`card bg-dark ${styles.caraousel}`}>
               <Image
                 src={item?.photo}

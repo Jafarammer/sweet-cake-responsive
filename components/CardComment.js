@@ -21,7 +21,7 @@ function CardComment() {
   return (
     <div>
       {dataComment.map((item) => (
-        <div className="d-flex align-items-center mb-3 px-4">
+        <div key={item?.id} className="d-flex align-items-center mb-3 px-4">
           <div className="flex-shrink-0 rounded-circle border border-warning">
             <img
               src={item?.photo || "/images/default.jpg"}

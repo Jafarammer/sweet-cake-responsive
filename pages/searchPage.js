@@ -72,7 +72,7 @@ export default function SearchPage() {
                         className={`card-text mt-3 ${styles.view_detail} `}
                         onClick={() => Router.push("/detailRecipe/" + item?.id)}
                       >
-                        <i class="bi bi-eye-fill me-1 mt-1"></i>
+                        <i className="bi bi-eye-fill me-1 mt-1"></i>
                         View detail
                       </p>
                     </div>
