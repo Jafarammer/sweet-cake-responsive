@@ -74,7 +74,7 @@ const authLogin = ({ email, password }) => {
   return (dispatch) => {
     initAuth(dispatch);
     axios
-      .post(`http://localhost:8000/login`, {
+      .post(`${process.env.API_URL}/login`, {
         email,
         password,
       })
