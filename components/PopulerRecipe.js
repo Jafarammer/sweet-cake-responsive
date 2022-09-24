@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import axios from "axios";
+import Router from "next/router";
 // css
 import styles from "../styles/Home.module.css";
 
@@ -16,8 +17,9 @@ export default function PopulerRecipe() {
       <div className="d-flex align-items-center flex-column px-3 mb-5">
         {dataPopuler.map((item) => (
           <div
-            key={item?.id_recipe}
+            key={item?.id}
             className={`card shadow mx-3 mb-3 ${styles.card_img}`}
+            onClick={() => Router.push(`/recipe/${item?.id}`)}
           >
             <div className="row g-0">
               <div className="col-4 py-2 ps-2">

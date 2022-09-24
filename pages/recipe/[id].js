@@ -1,54 +1,36 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Router from "next/router";
+import Swal from "sweetalert2";
 import axios from "axios";
-import { useRouter } from "next/router";
 // redux
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
-// componet
+// layout
 import Navbar from "../../layouts/Navbar";
+// component
 import CardComment from "../../components/CardComment";
-//css
+// css
 import styles from "../../styles/details/detailRecipe.module.css";
 
-export async function getStaticPaths() {
-  // const { query } = useRouter();
-  // const { id } = query.id;
-  const request = await fetch(`${process.env.API_URL}/recipe`).then((res) =>
-    res.json()
-  );
-
-  return {
-    paths: request.data.map((item) => ({
-      params: { id: item?.id?.toString() },
-    })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  const { id } = context.params;
-  const request = await fetch(`${process.env.API_URL}/recipe/id/${id}`).then(
-    (res) => res.json()
-  );
-
-  return {
-    props: {
-      todo: request,
-    },
-  };
-}
-
-const DetailRecipe = (props) => {
+export default function Detail() {
+  const router = useRouter();
+  const { id } = router.query;
   const { profile } = useSelector((state) => state?.auth);
   const { token } = useSelector((state) => state?.auth);
+  const [dataRecipe, setDataRecipe] = React.useState([]);
   const [comment_message, setCommentMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [toggleState, setToggleState] = React.useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
   };
+
+  React.useEffect(() => {
+    axios
+      .get(`${process.env.API_URL}/recipe/id/${id}`)
+      .then((res) => setDataRecipe(res.data.data));
+  }, []);
 
   const handleComment = async () => {
     setIsLoading(true);
@@ -98,7 +80,7 @@ const DetailRecipe = (props) => {
       <Navbar />
       {/* title */}
       <h3 className={`ms-3 text-light ${styles.d_title}`}>
-        {props?.todo?.data[0]?.title_recipe}
+        {dataRecipe[0]?.title_recipe}
       </h3>
       {/* subtitle */}
       <p className={`ms-3 shadow-lg py-1 px-2 text-light ${styles.d_subTitle}`}>
@@ -108,7 +90,7 @@ const DetailRecipe = (props) => {
       <header className={styles.d_header}>
         <div className="card m-0 p-0 bg-dark">
           <Image
-            src={props?.todo?.data[0]?.photo}
+            src={dataRecipe[0]?.photo}
             alt="default image"
             width="700px"
             height="700px"
@@ -208,7 +190,7 @@ const DetailRecipe = (props) => {
               <div className={`px-4 ${styles.d_ingredients}`}>
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: props?.todo?.data[0]?.ingredients
+                    __html: dataRecipe[0]?.ingredients
                       ?.split("\n")
                       .join("<br />"),
                   }}
@@ -220,6 +202,4 @@ const DetailRecipe = (props) => {
       </main>
     </div>
   );
-};
-
-export default DetailRecipe;
+}
