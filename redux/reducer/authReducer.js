@@ -74,7 +74,7 @@ const authLogin = ({ email, password }) => {
   return (dispatch) => {
     initAuth(dispatch);
     axios
-      .post(`https://sweet-cake-chef.herokuapp.com/login`, {
+      .post(`http://localhost:8000/login`, {
         email,
         password,
       })

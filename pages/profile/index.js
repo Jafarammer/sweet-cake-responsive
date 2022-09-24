@@ -18,7 +18,7 @@ function Profile() {
   const [dataProfile, setDataProfile] = React.useState("");
   React.useEffect(() => {
     axios
-      .get(`https://sweet-cake-chef.herokuapp.com/users/id/${profile?.id}`)
+      .get(`${process.env.API_URL}/users/id/${profile?.id}`)
       .then((res) => setDataProfile(res.data.data));
   }, []);
 

@@ -19,11 +19,9 @@ function MyRecipe() {
 
   React.useEffect(() => {
     axios
-      .get(
-        `https://sweet-cake-chef.herokuapp.com/recipe/recipebyuser/${profile?.id}`
-      )
+      .get(`${process.env.API_URL}/recipe/recipebyuser/${profile?.id}`)
       .then((res) => setDataRecipe(res.data.recipe));
-  });
+  }, []);
 
   return (
     <div>
@@ -49,9 +47,7 @@ function MyRecipe() {
                 className="bi bi-trash-fill position-absolute ms-3 mt-2 fs-4"
                 onClick={() =>
                   axios
-                    .delete(
-                      `https://sweet-cake-chef.herokuapp.com/recipe/delete/${item?.id}`
-                    )
+                    .delete(`${process.env.API_URL}/recipe/delete/${item?.id}`)
                     .then((res) => {
                       Swal.fire({
                         icon: "success",

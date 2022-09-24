@@ -32,7 +32,7 @@ export default function AddRecipe() {
     formData.append("user_id", profile?.id);
     await axios
       .post(
-        "https://sweet-cake-chef.herokuapp.com/recipe/add",
+        `${process.env.API_URL}/recipe/add`,
         formData,
         {
           headers: {

@@ -26,7 +26,7 @@ function Register() {
   const handleRegister = () => {
     setIsLoading(true);
     axios
-      .post("https://sweet-cake-chef.herokuapp.com/register", {
+      .post(`${process.env.API_URL}/register`, {
         name,
         email,
         phone_number,

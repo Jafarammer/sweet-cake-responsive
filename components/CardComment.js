@@ -10,7 +10,7 @@ function CardComment() {
   const [dataComment, setDataComment] = React.useState([]);
   React.useEffect(() => {
     axios
-      .get(`https://sweet-cake-chef.herokuapp.com/comment/comment/${id}`)
+      .get(`${process.env.API_URL}/comment/comment/${id}`)
       .then((res) => setDataComment(res.data.data));
   }, []);
 
@@ -37,7 +37,9 @@ function CardComment() {
               {item?.name}
             </p>
             <p className="lh-1">
-              <small className="text-muted lh-1">{item?.comment_message}</small>
+              <small className={`text-muted lh-1 ${styles.text_comment}`}>
+                {item?.comment_message}
+              </small>
             </p>
           </div>
         </div>

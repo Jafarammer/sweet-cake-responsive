@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Router from "next/router";
 import Link from "next/link";
 import axios from "axios";
 // swiper
@@ -28,16 +29,19 @@ export default function NewRecipe() {
         >
           {data.map((item) => (
             <SwiperSlide key={item?.id}>
-              <Link href={"/detailRecipe/" + item?.id}>
-                <div className={`card ${styles.caraousel}`}>
-                  <Image
-                    src={item?.photo}
-                    alt="logo"
-                    width="100%"
-                    height="160%"
-                  />
-                </div>
-              </Link>
+              {/* <Link href={"/detailRecipe/" + item?.id}> */}
+              <div
+                className={`card ${styles.caraousel}`}
+                onClick={() => Router.push("/detailRecipe/" + item?.id)}
+              >
+                <Image
+                  src={item?.photo}
+                  alt="logo"
+                  width="100%"
+                  height="160%"
+                />
+              </div>
+              {/* </Link> */}
             </SwiperSlide>
           ))}
         </Swiper>

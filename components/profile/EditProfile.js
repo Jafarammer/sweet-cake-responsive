@@ -28,7 +28,7 @@ function EditProfile() {
     formData.append("name", name);
     await axios
       .patch(
-        `https://sweet-cake-chef.herokuapp.com/users/edit/${profile?.id}`,
+        `${process.env.API_URL}/users/edit/${profile?.id}`,
         formData,
         {
           headers: {

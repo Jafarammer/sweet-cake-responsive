@@ -8,7 +8,7 @@ export default function PopulerRecipe() {
   const [dataPopuler, setDataPopuler] = React.useState([]);
   React.useEffect(() => {
     axios
-      .get("/api/recipe/getRecipe")
+      .get(`${process.env.API_URL}/recipe`)
       .then((res) => setDataPopuler(res.data.data));
   });
   return (
