@@ -21,27 +21,18 @@ export default function SearchPage() {
   const pageSize = 5;
   const [currentPage, setCurrentPage] = React.useState(1);
   const router = useRouter();
-  const query = router.query.title;
+  const query = router.query;
+  const title = query.title;
 
   React.useEffect(() => {
     axios
-      .get(`${process.env.API_URL}/recipe/name?title_recipe=${query}`)
+      .get(`${process.env.API_URL}/recipe/name?title_recipe=${title}`)
       .then((res) => setData(res.data.data))
       .catch((error) => {
         setIsError(true);
         setMessage(error.response.data);
       });
-  }, [query]);
-
-  // React.useEffect(() => {
-  //   const getPosts = async () => {
-  //     const { data: res } = await axios.get(
-  //       `${process.env.API_URL}/recipe/name?title_recipe=${query}`
-  //     );
-  //     setPosts(res.data);
-  //   };
-  //   getPosts();
-  // }, [query]);
+  }, [title]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -106,9 +97,7 @@ export default function SearchPage() {
                         </small>
                         <p
                           className={`card-text mt-3 ${styles.view_detail} `}
-                          onClick={() =>
-                            Router.push("/detailRecipe/" + post?.id)
-                          }
+                          onClick={() => Router.push(`/recipe/${post?.id}`)}
                         >
                           <i className="bi bi-eye-fill me-1 mt-1"></i>
                           View detail

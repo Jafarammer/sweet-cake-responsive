@@ -32,7 +32,7 @@ export default function NewRecipe() {
               {/* <Link href={"/detailRecipe/" + item?.id}> */}
               <div
                 className={`card ${styles.caraousel}`}
-                onClick={() => Router.push("/detailRecipe/" + item?.id)}
+                onClick={() => Router.push(`/recipe/${item?.id}`)}
               >
                 <Image
                   src={item?.photo}
