@@ -27,7 +27,7 @@ export default function NewRecipe() {
           slidesPerView={2}
           // spaceBetween={30}
         >
-          {data.map((item) => (
+          {data.slice(0, 5).map((item) => (
             <SwiperSlide key={item?.id}>
               {/* <Link href={"/detailRecipe/" + item?.id}> */}
               <div
@@ -46,6 +46,12 @@ export default function NewRecipe() {
           ))}
         </Swiper>
       </div>
+      <p
+        className={`d-flex justify-content-end me-4 mt-4 ${styles.text_showMore}`}
+        onClick={() => Router.push("/Sort")}
+      >
+        Show more
+      </p>
     </div>
   );
 }

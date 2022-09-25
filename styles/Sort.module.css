@@ -1,0 +1,16 @@
+.content {
+  overflow: hidden;
+  min-height: 105vh;
+  margin-bottom: 20px;
+  padding-bottom: 15vh;
+  width: 400px;
+  background-color: white;
+  margin-bottom: 10vh;
+}
+.d_card {
+  width: 18rem;
+  min-height: 18rem;
+}
+.d_card img {
+  object-fit: cover;
+}

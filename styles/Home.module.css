@@ -161,6 +161,13 @@
   object-fit: cover;
   border-radius: 15px;
 }
+.text_showMore {
+  cursor: pointer;
+  color: black;
+}
+.text_showMore:hover {
+  color: rgb(246, 207, 7);
+}
 .card_img {
   /* width: 319px; */
   width: 100%;

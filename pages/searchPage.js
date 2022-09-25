@@ -17,7 +17,6 @@ export default function SearchPage() {
   const [data, setData] = React.useState([]);
   const [isError, setIsError] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  const [posts, setPosts] = React.useState([]);
   const pageSize = 5;
   const [currentPage, setCurrentPage] = React.useState(1);
   const router = useRouter();

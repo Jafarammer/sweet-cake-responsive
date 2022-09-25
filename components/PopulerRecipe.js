@@ -15,7 +15,7 @@ export default function PopulerRecipe() {
   return (
     <div>
       <div className="d-flex align-items-center flex-column px-3 mb-5">
-        {dataPopuler.map((item) => (
+        {dataPopuler.slice(0, 5).map((item) => (
           <div
             key={item?.id}
             className={`card shadow mx-3 mb-3 ${styles.card_img}`}
