@@ -35,7 +35,7 @@ function Profile() {
           className={`d-flex align-items-center justify-content-center flex-column bg-warning ${styles.d_header}`}
         >
           <Image
-            src={dataProfile[0]?.photo || "/images/default.jpg"}
+            src={dataProfile[0]?.photo_profile || "/images/default.jpg"}
             alt="default image"
             width="100%"
             height="100%"

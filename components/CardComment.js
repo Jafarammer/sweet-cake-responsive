@@ -24,7 +24,7 @@ function CardComment() {
         <div key={item?.id} className="d-flex align-items-center mb-3 px-4">
           <div className="flex-shrink-0 rounded-circle border border-warning">
             <img
-              src={item?.photo || "/images/default.jpg"}
+              src={item?.photo_profile || "/images/default.jpg"}
               onError={addDefaultSrc}
               alt="image"
               className={`${styles.img_comment} rounded-circle`}

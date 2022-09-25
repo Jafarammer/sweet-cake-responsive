@@ -84,7 +84,7 @@ export default function Detail() {
       </h3>
       {/* subtitle */}
       <p className={`ms-3 shadow-lg py-1 px-2 text-light ${styles.d_subTitle}`}>
-        By Chef Ronald Humson
+        Chef by {dataRecipe[0]?.name}
       </p>
       {/* Header */}
       <header className={styles.d_header}>
