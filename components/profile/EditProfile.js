@@ -24,7 +24,7 @@ function EditProfile() {
   const userUpdate = async () => {
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("photo_profile", file);
+    formData.append("photo", file);
     formData.append("name", name);
     await axios
       .patch(
